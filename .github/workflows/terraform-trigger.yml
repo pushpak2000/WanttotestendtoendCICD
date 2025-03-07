@@ -34,18 +34,22 @@ jobs:
       - name: Set up Terraform Cloud Token
         run: echo "TERRAFORM_CLOUD_TOKEN=${{ secrets.TERRAFORM_CLOUD_TOKEN }}" >> $GITHUB_ENV
 
+      # Set SSH Public Key as a Terraform Variable -> this will make it available for pipepline env
+      - name: Set SSH Public Key for Terraform
+        run: echo "ssh_public_key=${{ secrets.AWS_SSH_PUBLIC_KEY }}" >> $GITHUB_ENV
+
       # Initialize Terraform
       - name: Terraform Init
         run: terraform init
 
       # Validate Terraform configuration
-      #- name: Terraform Validate
-      #  run: terraform validate
+      - name: Terraform Validate
+        run: terraform validate
 
       # Plan Terraform deployment
-      #- name: Terraform Plan
-      #  run: terraform plan
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan -var="ssh_public_key=${{ secrets.AWS_SSH_PUBLIC_KEY }}"
 
       # Apply Terraform configuration
       - name: Terraform Apply
-        run: terraform apply -auto-approve
+        run: terraform apply -auto-approve tfplan

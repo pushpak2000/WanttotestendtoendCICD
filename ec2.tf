@@ -41,3 +41,5 @@ EOF
     Name = "NginxServer"
   }
 }
+
+#add logic if container already exists then delete it and also make sure name is same across platforms of docker image 
