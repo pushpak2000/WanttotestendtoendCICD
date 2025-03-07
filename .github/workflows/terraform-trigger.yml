@@ -38,8 +38,8 @@ jobs:
       - name: Set SSH Public Key for Terraform
         run: echo "ssh_public_key=${{ secrets.AWS_SSH_PUBLIC_KEY }}" >> $GITHUB_ENV
       #Install terra form on brum brum
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
+      - name: Setting up Terraform
+        uses: hashicorp/setup-terraform@v3
 
       # Initialize Terraform
       - name: Terraform Init
