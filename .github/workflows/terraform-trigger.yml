@@ -37,6 +37,9 @@ jobs:
       # Set SSH Public Key as a Terraform Variable -> this will make it available for pipepline env
       - name: Set SSH Public Key for Terraform
         run: echo "ssh_public_key=${{ secrets.AWS_SSH_PUBLIC_KEY }}" >> $GITHUB_ENV
+      #Install terra form on brum brum
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
 
       # Initialize Terraform
       - name: Terraform Init
