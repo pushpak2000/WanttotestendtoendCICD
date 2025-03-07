@@ -29,7 +29,7 @@ jobs:
       # Build Docker image
       - name: Build Docker Image
         run: |
-          docker buildx build --platform linux/amd64,linux/arm64 -t gitkeeper05/wanttotestendtoendcicd:latest
+          docker buildx build --platform linux/amd64,linux/arm64 -t gitkeeper05/wanttotestendtoendcicd:latest --push .
       # Set up Terraform Cloud Token as an environment variable (Do it not done yet)
       - name: Set up Terraform Cloud Token
         run: echo "TERRAFORM_CLOUD_TOKEN=${{ secrets.TERRAFORM_CLOUD_TOKEN }}" >> $GITHUB_ENV
